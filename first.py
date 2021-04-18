@@ -21,6 +21,33 @@ def fetch():
     ir=temp//(16**3)
     mar=temp%(16**3)
 
+def execute():
+
+    global ac,mq,mbr,mar,ibr,ir,pc
+
+    #left insruction
+
+    # mbr = mm[mar]
+
+    if ir==0x0A:
+        ac=mq
+
+    elif ir==0x09:
+        mq=mm[mar]
+
+    elif ir==0x21:#STOR
+        mm[mar]=ac
+
+    elif ir==0x01:#LOAD
+
+        ac=mm[mar]
+
+    
+
+    
+
+
+
 
 mm[0]=0x0123456789
 
