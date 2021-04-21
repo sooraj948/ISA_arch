@@ -42,6 +42,35 @@ def execute():
 
         ac=mm[mar]
 
+    elif ir==0x02:#load -m(x)
+
+        ac=-mm[mar]
+
+    elif ir==0x03:#load |m(x)|
+
+        ac=abs(mm[mar])
+
+    elif ir==0x04:#load -|m(x)|
+
+        ac=-abs(mm[mar])
+
+    #implement jump instructions still
+
+    elif ir=0x05:#add m(x)
+
+        ac+=mm[mar]
+
+    elif ir=0x07:
+
+        ac+=abs(mm[mar])
+
+    
+
+
+
+
+
+
     
 
     
