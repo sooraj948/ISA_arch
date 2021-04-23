@@ -21,7 +21,7 @@ def fetch():
     ir=temp//(16**3)
     mar=temp%(16**3)
 
-def execute():
+def left():
 
     global ac,mq,mbr,mar,ibr,ir,pc
 
@@ -54,13 +54,80 @@ def execute():
 
         ac=-abs(mm[mar])
 
-    #implement jump instructions still
+    elif ir==0x0D:#unconditional jump. take left instruction
 
-    elif ir=0x05:#add m(x)
+        pc=mm[mar]
+
+    elif ir==0x0F:#conditional jump
+
+        if ac>=0:
+            pc=mm[mar]
+
+        
+
+
+    elif ir==0x05:#add m(x)
 
         ac+=mm[mar]
 
-    elif ir=0x07:
+    elif ir==0x07:
+
+        ac+=abs(mm[mar])
+
+def right():
+
+    global ac,mq,mbr,mar,ibr,ir,pc
+
+    #right insruction
+
+    # temp=ibr//(16**5)
+    ir=ibr//(16**3)
+    mar=ibr%(16**3)
+
+    # mbr = mm[mar]
+
+    if ir==0x0A:
+        ac=mq
+
+    elif ir==0x09:
+        mq=mm[mar]
+
+    elif ir==0x21:#STOR
+        mm[mar]=ac
+
+    elif ir==0x01:#LOAD
+
+        ac=mm[mar]
+
+    elif ir==0x02:#load -m(x)
+
+        ac=-mm[mar]
+
+    elif ir==0x03:#load |m(x)|
+
+        ac=abs(mm[mar])
+
+    elif ir==0x04:#load -|m(x)|
+
+        ac=-abs(mm[mar])
+
+    elif ir==0x0D:#unconditional jump. take left instruction
+
+        pc=mm[mar]
+
+    elif ir==0x0F:#conditional jump
+
+        if ac>=0:
+            pc=mm[mar]
+
+        
+
+
+    elif ir==0x05:#add m(x)
+
+        ac+=mm[mar]
+
+    elif ir==0x07:
 
         ac+=abs(mm[mar])
 
@@ -76,13 +143,20 @@ def execute():
     
 
 
+##################testing###################
 
+mm[0]=0x0110005101
 
-mm[0]=0x0123456789
+mm[0x100]=25
+mm[0x101]=25
+
 
 fetch()
+left()
+print(mar,ir,ibr,ac)
+right()
+print(mar,ir,ibr,ac)
 
-# print(mar,ir,ibr)
 
 
 
