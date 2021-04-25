@@ -17,9 +17,9 @@ Assembly code:
 
 1 LOAD M(100) , SUB M(101) #AC=a-b
 
-2 STOR M(103) , LOAD -|M(103)| # AC will be non-negative only if m(103) is 0 => a-b=0 => a=b
+2 STOR M(103) , LOAD -|M(103)| 
 
-3 JUMP M(6,0:19)
+3 JUMP+ M(6,0:19) # AC will be non-negative only if m(103) is 0 => a-b=0 => a=b
 
 4 LOAD M(100) , ADD M(101)#This is the else part c=a+b
 
