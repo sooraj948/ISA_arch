@@ -1,4 +1,4 @@
-#registers(global)
+    #registers(global)
 
 ac=0#accumalator
 mq=0
@@ -74,6 +74,29 @@ def left():
 
         ac+=abs(mm[mar])
 
+    elif ir==0x06:
+        ac-=mm[mar]
+    
+    elif ir==0x08:
+        ac-=abs(mm[mar])
+
+    elif ir==0x0B:
+        mq=mm[mar]*mq//(16**5)
+        mq=(mm[mar]*mq)%(16**5)
+
+    elif ir==0x0C:
+        mq=ac//mm[mar]
+        ac=ac%mm[mar]
+        
+    elif ir==0x24:
+        ac=ac*2
+
+    elif ir==0x25:
+        ac=ac//2
+
+    elif ir==0x22:
+        temp = mm
+
 def right():
 
     global ac,mq,mbr,mar,ibr,ir,pc
@@ -131,7 +154,44 @@ def right():
 
         ac+=abs(mm[mar])
 
+    elif ir==0x06:
+        ac-=mm[mar]
     
+    elif ir==0x08:
+        ac-=abs(mm[mar])
+
+    elif ir==0x0B:
+        mq=mm[mar]*mq//(16**5)
+        mq=(mm[mar]*mq)%(16**5)
+
+    elif ir==0x0C:
+        mq=ac//mm[mar]
+        ac=ac%mm[mar]
+        
+    elif ir==0x24:
+        ac=ac*2
+
+    elif ir==0x25:
+        ac=ac//2
+
+    elif ir==0x22:
+        temp = mm
+
+    elif ir==0x00:
+        return 0
+    
+    return 1
+
+def main():
+    global pc
+    fetch()
+    left()
+    if(right()):
+        print(mar,ir,ibr,ac)
+        pc+=1
+        main()
+    else:
+        print(mar,ir,ibr,ac)
 
 
 
@@ -146,16 +206,17 @@ def right():
 ##################testing###################
 
 mm[0]=0x0110005101
-
+mm[1]=0x011000101
 mm[0x100]=25
 mm[0x101]=25
 
 
-fetch()
-left()
-print(mar,ir,ibr,ac)
-right()
-print(mar,ir,ibr,ac)
+main()
+# fetch()
+# left()
+# print(mar,ir,ibr,ac)
+# right()
+# print(mar,ir,ibr,ac)
 
 
 
