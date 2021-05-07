@@ -56,12 +56,14 @@ def left():
 
     elif ir==0x0D:#unconditional jump. take left instruction
 
-        pc=mm[mar]
+        pc=mar
+        return 1
 
     elif ir==0x0F:#conditional jump
 
         if ac>=0:
-            pc=mm[mar]
+            pc=mar
+            return 1
 
         
 
@@ -96,6 +98,8 @@ def left():
 
     elif ir==0x22:
         temp = mm
+
+    return 0
 
 def right():
 
@@ -136,12 +140,14 @@ def right():
 
     elif ir==0x0D:#unconditional jump. take left instruction
 
-        pc=mm[mar]
+        pc=mar
+        return 2
 
     elif ir==0x0F:#conditional jump
 
         if ac>=0:
-            pc=mm[mar]
+            pc=mar
+            return 2
 
         
 
@@ -185,13 +191,30 @@ def right():
 def main():
     global pc
     fetch()
-    left()
-    if(right()):
-        print(mar,ir,ibr,ac)
-        pc+=1
+    l=left()
+    print(mar,ac,pc)
+    if l:#JUMP
+        print("jumped in left")
         main()
     else:
-        print(mar,ir,ibr,ac)
+
+        print("now onto right")
+
+        r=right()   
+        if(r):
+            if (r==2):
+                print("jump")
+                print(mar,ac,pc)
+                main()
+            else:
+
+                print(mar,ac,pc)
+                pc+=1
+                main()
+        else:
+
+            print(mar,ac,pc)
+
 
 
 
@@ -206,12 +229,14 @@ def main():
 ##################testing###################
 
 mm[0]=0x0110005101
-mm[1]=0x011000101
+mm[1]=0x0D005
+mm[5]=0x21102
 mm[0x100]=25
 mm[0x101]=25
 
 
 main()
+print(mm[0x102])
 # fetch()
 # left()
 # print(mar,ir,ibr,ac)
