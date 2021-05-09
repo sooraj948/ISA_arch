@@ -192,28 +192,28 @@ def main():
     global pc
     fetch()
     l=left()
-    print(mar,ac,pc)
+    # print(mar,ac,pc)
     if l:#JUMP
-        print("jumped in left")
+        # print("jumped in left")
         main()
     else:
 
-        print("now onto right")
+        # print("now onto right")
 
         r=right()   
         if(r):
             if (r==2):
-                print("jump")
-                print(mar,ac,pc)
+                # print("jump")
+                print("mar,ac,pc",mar,ac,pc)
                 main()
             else:
 
-                print(mar,ac,pc)
+                print("mar,ac,pc",mar,ac,pc)
                 pc+=1
                 main()
         else:
 
-            print(mar,ac,pc)
+            print("mar,ac,pc",mar,ac,pc)
 
 
 
@@ -228,15 +228,21 @@ def main():
 
 ##################testing###################
 
-mm[0]=0x0110005101
-mm[1]=0x0D005
-mm[5]=0x21102
-mm[0x100]=25
-mm[0x101]=25
+mm[0x0]=0x0110006101
+mm[0x1]=0x2110304103
+mm[0x2]=0x0F005
+mm[0x3]=0x0110005101
+mm[0x4]=0x2110200000
+mm[0x5]=0x0110006101
+mm[0x6]=0x2110200000
+
+mm[0x100]=1#a
+mm[0x101]=15#b
+
 
 
 main()
-print(mm[0x102])
+print("c =",mm[0x102])
 # fetch()
 # left()
 # print(mar,ir,ibr,ac)
