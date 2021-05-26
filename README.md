@@ -1,4 +1,10 @@
-# ISA_arch
+Hasanabbas Momin
+
+Sooraj Sathish
+
+
+
+# IAS_arch
 Simulating the IAS architecture in python
 
 C program:
