@@ -35,3 +35,20 @@ Assembly code:
 
 7 STOR M(102) , HALT
 
+Explanation of code:
+
+The main() function calls all the other functions and also itself, recursively, to simulate the continuous fetch,decode,execute cycles of the IAS machine.
+
+The fetch() function fetches the various values required for execution and stores them in variables like mar,ibr,etc(all self explanatory variable names have neen used).
+
+The left() function executes left instruction, if it exists.
+
+The right() instruction executes the right instruction of a word.
+
+The program instructions and data are stored in a 2D array mm[]. 
+
+The instructions start from position 0 of mm.
+
+Data is stored from position 0x100 onwards.
+
+
