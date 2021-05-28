@@ -236,8 +236,10 @@ mm[0x4]=0x2110200000
 mm[0x5]=0x0110006101
 mm[0x6]=0x2110200000
 
-mm[0x100]=1#a
-mm[0x101]=15#b
+a=int(input("Entr value of a: "))
+b=int(input("Entr value of b: "))
+mm[0x100]=a
+mm[0x101]=b
 
 
 
