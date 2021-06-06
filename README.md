@@ -45,7 +45,7 @@ The left() function executes left instruction, if it exists.
 
 The right() instruction executes the right instruction of a word.
 
-The program instructions and data are stored in a 2D array mm[]. 
+The program instructions and data are stored in a 1D array mm[]. 
 
 The instructions start from position 0 of mm.
 
